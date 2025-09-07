@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabajo de Antonia y Mayra - Quiz Monte León</title>
+  <style>
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 { font-size: 2rem; margin: 20px 0 10px; text-shadow: 1px 1px 8px rgba(0,0,0,0.4); }
+    h2 { font-size: 1.3rem; margin-bottom: 10px; }
+
+    /* Pantalla de inicio */
+    #start-screen { text-align: center; margin-top: 50px; }
+    #start-screen button {
+      background: #ff6b6b;
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 15px 40px;
+      border-radius: 15px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    #start-screen button:hover { background: #ff4757; }
+
+    /* Quiz */
+    #quiz { display: none; flex-direction: column; width: 90%; max-width: 700px; gap: 20px; margin-top: 30px; }
+
+    .question {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    .question:hover { transform: translateY(-5px); }
+
+    .options { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+    .options button {
+      background: #1e1e2f;
+      color: #fff;
+      padding: 12px 18px;
+      margin: 8px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .options button:hover { background: #3742fa; }
+
+    .feedback { margin-top: 12px; font-size: 1.1rem; font-weight: bold; }
+    .hearts { font-size: 1.8rem; margin-top: 8px; color: #ff6b6b; animation: float 1s ease-in-out infinite alternate; }
+    @keyframes float { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+
+    .image-space {
+      margin: 15px 0;
+      height: 180px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.9rem;
+      color: #fff;
+      border: 2px dashed #fff;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    .image-space img { max-height: 100%; border-radius: 10px; object-fit: cover; }
+  </style>
+</head>
+<body>
+
+<h1>Trabajo de Antonia y Mayra</h1>
+
+<div id="start-screen">
+  <p>¡Bienvenidos al Quiz del Parque Nacional Monte León!</p>
+  <button id="start-button">Comenzar 🎮</button>
+</div>
+
+<div id="quiz">
+  <!-- Pregunta 1 -->
+  <div class="question">
+    <h2>¿Cuál de estos animales habita en el Parque Nacional Monte León?</h2>
+    <div class="image-space" id="img1">Aquí aparecerá la imagen si la respuesta es correcta</div>
+    <div class="options">
+      <button onclick="checkAnswer(this, true, 'img1', 'https://live.staticflickr.com/1618/25681165305_7acbdd000e_b.jpg')">Zorros 🦊</button>
+      <button onclick="checkAnswer(this, false)">Perros domésticos</button>
+      <button onclick="checkAnswer(this, false)">Gatos domésticos</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <!-- Pregunta 2 -->
+  <div class="question">
+    <h2>¿Qué ecosistema caracteriza al Parque Nacional Monte León?</h2>
+    <div class="image-space" id="img2">Aquí aparecerá la imagen si la respuesta es correcta</div>
+    <div class="options">
+      <button onclick="checkAnswer(this, false)">Selva tropical</button>
+      <button onclick="checkAnswer(this, true, 'img2', 'https://larutanatural.gob.ar/panel/public/uploads/rutas-naturales/generated/w1800,h1253,fcrop,q80/842c9547-dd66-4fa7-a605-e1ce2a4e19c9.jpg')">Estepa patagónica</button>
+      <button onclick="checkAnswer(this, false)">Bosque boreal</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <!-- Pregunta 3 -->
+  <div class="question">
+    <h2>¿Qué tipo de costa protege el Parque Nacional Monte León?</h2>
+    <div class="image-space" id="img3">Aquí aparecerá la imagen si la respuesta es correcta</div>
+    <div class="options">
+      <button onclick="checkAnswer(this, true, 'img3', 'https://larutanatural.gob.ar/panel/public/uploads/rutas-naturales/originals/bd265dab-b418-4f42-8690-4ddf9b330566.jpg')">Costa atlántica patagónica</button>
+      <button onclick="checkAnswer(this, false)">Costa del río Paraná</button>
+      <button onclick="checkAnswer(this, false)">Costa del Lago Nahuel Huapi</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <!-- Pregunta 4 -->
+  <div class="question">
+    <h2>¿Cuál es una de las aves más conocidas que se puede ver en Monte León?</h2>
+    <div class="image-space" id="img4">Aquí aparecerá la imagen si la respuesta es correcta</div>
+    <div class="options">
+      <button onclick="checkAnswer(this, false)">Flamenco</button>
+      <button onclick="checkAnswer(this, true, 'img4', 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Larus_dominicanus_-Kenton-on-Sea%2C_Eastern_Cape%2C_South_Africa-8.jpg')">Gaviota cocinera</button>
+      <button onclick="checkAnswer(this, false)">Loro barranquero</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <!-- Pregunta 5 -->
+  <div class="question">
+    <h2>¿Cuál es una actividad prohibida dentro del Parque Nacional Monte León para conservar la fauna?</h2>
+    <div class="image-space" id="img5">Aquí aparecerá la imagen si la respuesta es correcta</div>
+    <div class="options">
+      <button onclick="checkAnswer(this, false)">Fotografiar pingüinos</button>
+      <button onclick="checkAnswer(this, true, 'img5', 'https://thumbs.dreamstime.com/b/no-alimentar-los-animales-con-signos-de-vida-salvaje-ilustraci%C3%B3n-vectorial-293527822.jpg')">Alimentar o molestar a los animales</button>
+      <button onclick="checkAnswer(this, false)">Caminar por los senderos</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+</div>
+
+<script>
+  // Botón "Comenzar" funcional
+  const startButton = document.getElementById('start-button');
+  const startScreen = document.getElementById('start-screen');
+  const quiz = document.getElementById('quiz');
+
+  startButton.addEventListener('click', () => {
+    startScreen.style.display = 'none'; // Oculta la pantalla de inicio
+    quiz.style.display = 'flex';        // Muestra el quiz
+  });
+
+  // Función para chequear respuestas
+  function checkAnswer(button, isCorrect, imgId, imgUrl) {
+    const feedback = button.parentElement.nextElementSibling;
+    feedback.innerHTML = "";
+
+    if (isCorrect) {
+      feedback.innerHTML = "<span style='color: #90ee90;'>¡Bien hecho! ✅</span><div class='hearts'>💖💖💖</div>";
+      if(imgId && imgUrl){
+        const imageSpace = document.getElementById(imgId);
+        imageSpace.innerHTML = `<img src="${imgUrl}" alt="Imagen relacionada">`;
+      }
+    } else {
+      feedback.innerHTML = "<span style='color: #ff6b6b;'>Inténtalo de nuevo ❌</span>";
+    }
+  }
+</script>
+
+</body>
+</html>
